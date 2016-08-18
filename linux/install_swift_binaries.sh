@@ -56,7 +56,11 @@ echo ">> Installing swift-corelibs-libdispatch..."
 echo "Get the ${LIBDISPATCH_BRANCH} branch"
 git clone -b ${LIBDISPATCH_BRANCH}  https://github.com/apple/swift-corelibs-libdispatch.git
 echo "Compiling libdispatch"
-cd swift-corelibs-libdispatch && git submodule init && git submodule update && sh ./autogen.sh && ./configure --with-swift-toolchain=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr --prefix=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr && make && make install
+cd swift-corelibs-libdispatch && git submodule init && git submodule update && sh ./autogen.sh && ./configure --with-swift-toolchain=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr --prefix=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr && make
+ret_code=$?
+echo return code is $ret_code
+cd swift-corelibs-libdispatch
+make install
 echo "Finished building libdispatch"
 ret_code=$?
 echo return code is $ret_code
